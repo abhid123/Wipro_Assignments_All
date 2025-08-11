@@ -1,0 +1,5 @@
+package com.example.movie_ticket_booking_app_rest_api.repository;
+
+public class MovieRepositoryTest {
+
+}

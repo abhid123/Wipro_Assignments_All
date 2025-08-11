@@ -1,0 +1,76 @@
+package com.example.movie_ticket_booking_app_rest_api.service;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Optional;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.example.movie_ticket_booking_app_rest_api.model.Movie;
+import com.example.movie_ticket_booking_app_rest_api.repository.MovieRepository;
+
+@SpringBootTest
+class MovieServiceTest {
+
+    @Mock
+    MovieRepository movieRepository;
+
+    @InjectMocks
+    MovieService movieService;
+
+    private Movie movie;
+
+    @BeforeEach
+    public void setUp() {
+        movie = new Movie();
+        movie.setTitle("Inception");
+        movie.setGenre("Sci-Fi");
+    }
+
+    @Test
+    void testCreateMovie() {
+        // Arrange
+        Mockito.when(movieRepository.save(Mockito.any(Movie.class))).thenReturn(movie);
+
+        // Act
+        Movie savedMovie = movieService.createMovie(movie);
+        System.out.println("Saved Movie in testCreateMovie: " + savedMovie);
+
+        // Assert
+        assertNotNull(savedMovie);
+        assertEquals("Inception", savedMovie.getTitle());
+        assertEquals("Sci-Fi", savedMovie.getGenre());
+    }
+
+    @Test
+    void testGetMovieByTitle() {
+        // Arrange
+        Mockito.when(movieRepository.findByTitle("Inception")).thenReturn(Optional.of(movie));
+
+        // Act
+        Optional<Movie> fetchedMovie = movieService.getMovieByTitle("Inception");
+        System.out.println("Fetched Movie in testGetMovieByTitle: " + fetchedMovie.get());
+
+        // Assert
+        assertTrue(fetchedMovie.isPresent());
+        assertEquals("Inception", fetchedMovie.get().getTitle());
+    }
+
+    @Test
+    void testGetMovieById() {
+        // Arrange
+        Mockito.when(movieRepository.findById(1L)).thenReturn(Optional.of(movie));
+
+        // Act
+        Optional<Movie> fetchedMovie = movieService.getMovieById(1L);
+        System.out.println("Fetched Movie in testGetMovieById: " + fetchedMovie.get());
+
+        // Assert
+        assertTrue(fetchedMovie.isPresent());
+    }
+}

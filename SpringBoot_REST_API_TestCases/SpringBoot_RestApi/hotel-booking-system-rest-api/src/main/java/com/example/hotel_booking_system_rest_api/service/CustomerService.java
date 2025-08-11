@@ -1,0 +1,41 @@
+package com.example.hotel_booking_system_rest_api.service;
+
+import java.util.List;
+import org.springframework.stereotype.Service;
+import com.example.hotel_booking_system_rest_api.model.Customer;
+import com.example.hotel_booking_system_rest_api.repository.CustomerRepository;
+
+@Service
+public class CustomerService {
+
+    private final CustomerRepository customerRepository;
+
+    public CustomerService(CustomerRepository repository) {
+        this.customerRepository = repository;
+    }
+
+    public Customer register(Customer customer) {
+       
+        return customerRepository.save(customer);
+    }
+
+    public Customer login(String email, String password) {
+        Customer customer = customerRepository.findByEmail(email);
+        if (customer != null && customer.getPassword().equals(password)) {
+            return customer;
+        }
+        return null;
+    }
+
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll();
+    }
+
+    public Customer getCustomerById(Long id) {
+        return customerRepository.findById(id).orElse(null);
+    }
+
+    public void deleteCustomer(Long id) {
+        customerRepository.deleteById(id);
+    }
+}

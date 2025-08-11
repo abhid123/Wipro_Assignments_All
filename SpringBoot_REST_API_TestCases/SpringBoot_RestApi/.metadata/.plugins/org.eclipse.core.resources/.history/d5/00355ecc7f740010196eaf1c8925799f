@@ -1,0 +1,5 @@
+package com.example.hotel_booking_system_rest_api.model;
+
+public class Customer {
+
+}

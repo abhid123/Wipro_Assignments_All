@@ -1,0 +1,68 @@
+package com.example.hotel_booking_system_rest_api.controller;
+
+import java.util.List;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import com.example.hotel_booking_system_rest_api.model.Booking;
+import com.example.hotel_booking_system_rest_api.service.BookingService;
+import com.example.hotel_booking_system_rest_api.model.Room;
+import com.example.hotel_booking_system_rest_api.model.Customer;
+//import com.example.hotel_booking_system_rest_api.dto.BookingRequest;
+
+@RestController
+@RequestMapping("/api/bookings")
+public class BookingController {
+
+    private final BookingService bookingService;
+    public BookingController(BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
+
+    // POST /api/bookings
+    @PostMapping
+    public ResponseEntity<?> createBooking(@RequestBody BookingRequest req) {
+        // convert BookingRequest -> Booking entity with only references
+        Booking b = new Booking();
+        b.setCheckInDate(req.getCheckInDate());
+        b.setCheckOutDate(req.getCheckOutDate());
+
+        Room r = new Room(); r.setId(req.getRoomId());
+        Customer c = new Customer(); c.setId(req.getCustomerId());
+        b.setRoom(r);
+        b.setCustomer(c);
+
+        try {
+            Booking saved = bookingService.createBooking(b);
+            return ResponseEntity.ok(saved);
+        } catch (RuntimeException ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
+    }
+
+    // GET /api/bookings/customer/{customerId}  (bookings by customer)
+    @GetMapping("/customer/{customerId}")
+    public List<Booking> getBookingsByCustomer(@PathVariable Long customerId) {
+        return bookingService.getBookingsByCustomerId(customerId);
+    }
+
+    // GET /api/bookings/{id}
+    @GetMapping("/{id}")
+    public ResponseEntity<Booking> getBookingById(@PathVariable Long id) {
+        Booking booking = bookingService.getBookingById(id);
+        return booking == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(booking);
+    }
+
+    // PUT /api/bookings/{id}
+    @PutMapping("/{id}")
+    public ResponseEntity<Booking> updateBooking(@PathVariable Long id, @RequestBody Booking booking) {
+        Booking updated = bookingService.updateBooking(id, booking);
+        return updated == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(updated);
+    }
+
+    // DELETE /api/bookings/{id}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> cancelBooking(@PathVariable Long id) {
+        bookingService.deleteBooking(id);
+        return ResponseEntity.noContent().build();
+    }
+}
