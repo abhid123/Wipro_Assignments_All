@@ -1,0 +1,5 @@
+package com.edtech.course_service;
+
+public @interface EnableEurekaClient {
+
+}

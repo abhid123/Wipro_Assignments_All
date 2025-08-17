@@ -1,0 +1,5 @@
+package com.edtech.api_gateway.security;
+
+public class AuthFilter {
+
+}

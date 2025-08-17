@@ -1,0 +1,5 @@
+package com.edtech.classroom_service.repository;
+
+public class ClassroomRepository {
+
+}

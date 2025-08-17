@@ -1,0 +1,5 @@
+package com.edtech.assessment_service.controller;
+
+public class AssessmentController {
+
+}

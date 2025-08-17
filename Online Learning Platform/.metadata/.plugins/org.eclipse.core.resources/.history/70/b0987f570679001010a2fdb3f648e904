@@ -1,0 +1,5 @@
+package com.edtech.classroom_service.dto;
+
+public class ClassroomRequest {
+
+}

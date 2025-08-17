@@ -1,0 +1,5 @@
+package com.edtech.assessment_service.entity;
+
+public class Assessment {
+
+}

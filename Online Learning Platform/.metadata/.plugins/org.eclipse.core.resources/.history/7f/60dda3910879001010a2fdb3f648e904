@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="assessment-service">
+        <property name="context-root" value="assessment-service"/>
+        <property name="java-output-path" value="/assessment-service/target/classes"/>
+    </wb-module>
+</project-modules>

@@ -1,0 +1,5 @@
+package com.edtech.user_service.security;
+
+public class JwtService {
+
+}

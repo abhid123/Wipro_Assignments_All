@@ -1,0 +1,5 @@
+package com.edtech.course_service.repository;
+
+public class CourseRepository {
+
+}

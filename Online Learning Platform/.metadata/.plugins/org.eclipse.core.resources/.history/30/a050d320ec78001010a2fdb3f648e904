@@ -1,0 +1,5 @@
+package com.edtech.user_service.entity;
+
+public class user {
+
+}

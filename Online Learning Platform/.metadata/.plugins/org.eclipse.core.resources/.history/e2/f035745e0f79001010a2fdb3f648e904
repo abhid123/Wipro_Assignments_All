@@ -1,0 +1,5 @@
+package com.edtech.notification_service.controller;
+
+public class NotificationController {
+
+}
