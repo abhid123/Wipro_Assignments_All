@@ -38,5 +38,4 @@ POST http://localhost:8080/auth/login
 GET http://localhost:8080/routes
 Authorization: Bearer <token>
 
-## DBs
-Update each service's application.properties with your DB credentials.
+
