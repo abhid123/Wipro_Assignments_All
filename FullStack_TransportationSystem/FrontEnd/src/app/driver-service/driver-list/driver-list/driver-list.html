@@ -1,0 +1,56 @@
+<div class="container mt-4">
+  <h2>Driver List</h2>
+
+  <div *ngIf="errorMessage" class="text-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="isLoading && !errorMessage">
+    Loading drivers...
+  </div>
+
+  <div *ngIf="!isLoading && !drivers.length && !errorMessage">
+    No drivers found.
+  </div>
+
+  <div *ngIf="drivers.length > 0">
+    <button class="btn btn-primary mb-3" [routerLink]="['/driver-create']">
+      Add Driver
+    </button>
+
+    <table border="1" cellspacing="0" cellpadding="8"
+           style="border-collapse: collapse; width: 100%; border: 2px solid black;">
+      <thead style="background-color: #f2f2f2;">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>License</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Status</th>
+          <th>Vehicle ID</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let driver of drivers">
+          <td>{{ driver.driverId }}</td>
+          <td>{{ driver.name }}</td>
+          <td>{{ driver.licenseNumber }}</td>
+          <td>{{ driver.phoneNumber }}</td>
+          <td>{{ driver.email }}</td>
+          <td>{{ driver.availabilityStatus }}</td>
+          <td>{{ driver.vehicleId }}</td>
+          <td>
+            <button class="btn btn-sm btn-warning"
+                    (click)="editDriver(driver.driverId)">Edit</button>
+            <button class="btn btn-sm btn-danger"
+                    (click)="deleteDriver(driver.driverId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <a routerLink="/" class="btn btn-secondary mt-3">Back to Main Menu</a>
+</div>

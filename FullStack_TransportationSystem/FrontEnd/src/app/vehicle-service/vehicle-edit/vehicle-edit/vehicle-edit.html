@@ -1,0 +1,32 @@
+<h2>Edit Vehicle</h2>
+
+<form (ngSubmit)="onSubmit()">
+  <label>ID:</label>
+  <input type="text" [value]="vehicle.vehicleId" disabled><br><br>
+
+  <label>Vehicle Number:</label>
+  <input type="text" [(ngModel)]="vehicle.vehicleNumber" name="vehicleNumber"><br><br>
+
+  <label>Type:</label>
+  <select [(ngModel)]="vehicle.type" name="type">
+    <option>BUS</option>
+    <option>CAR</option>
+    <option>VAN</option>
+    <option>TRUCK</option>
+  </select><br><br>
+
+  <label>Capacity:</label>
+  <input type="number" [(ngModel)]="vehicle.capacity" name="capacity"><br><br>
+
+  <label>Status:</label>
+  <select [(ngModel)]="vehicle.status" name="status">
+    <option>AVAILABLE</option>
+    <option>ON_TRIP</option>
+    <option>MAINTENANCE</option>
+  </select><br><br>
+
+  <button type="submit">Update</button>
+</form>
+
+<br>
+<a routerLink="/vehicle">Back</a>

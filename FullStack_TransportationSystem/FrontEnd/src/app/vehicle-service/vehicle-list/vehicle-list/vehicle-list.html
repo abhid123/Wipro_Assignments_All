@@ -1,0 +1,48 @@
+<h2>All Vehicles</h2>
+
+<div *ngIf="errorMessage" style="color:red">
+  {{ errorMessage }}
+</div>
+
+<div>
+  Total Vehicles: {{ vehicles.length }}
+</div>
+
+<div *ngIf="!vehicles.length && !errorMessage">
+  Loading ...
+</div>
+
+<table *ngIf="vehicles.length > 0" border="1" cellspacing="0" cellpadding="8"
+       style="border-collapse: collapse; width: 100%;">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Number</th>
+      <th>Type</th>
+      <th>Capacity</th>
+      <th>Status</th>
+      <th>Created At</th>
+      <th>Updated At</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let v of vehicles">
+      <td>{{ v.vehicleId }}</td>
+      <td>{{ v.vehicleNumber }}</td>
+      <td>{{ v.type }}</td>
+      <td>{{ v.capacity }}</td>
+      <td>{{ v.status }}</td>
+      <td>{{ v.createdAt }}</td>
+      <td>{{ v.updatedAt }}</td>
+      <td>
+        <button (click)="editVehicle(v.vehicleId)">Edit</button>
+        <button (click)="deleteVehicle(v.vehicleId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+<a routerLink="/vehicle-create">Add Vehicle</a> |
+<a routerLink="/">Back to main menu</a>

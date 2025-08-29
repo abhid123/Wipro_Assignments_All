@@ -1,0 +1,23 @@
+<h2>Edit Route</h2>
+
+<form (ngSubmit)="onSubmit()" #routeForm="ngForm">
+  <label>Source:</label>
+  <input type="text" [(ngModel)]="route.source" name="source" required><br>
+
+  <label>Destination:</label>
+  <input type="text" [(ngModel)]="route.destination" name="destination" required><br>
+
+  <label>Distance (km):</label>
+  <input type="number" [(ngModel)]="route.distanceKm" name="distanceKm" required><br>
+
+  <label>Estimated Duration (min):</label>
+  <input type="number" [(ngModel)]="route.estimatedDurationMin" name="estimatedDurationMin" required><br>
+
+  <label>Stops (comma separated):</label>
+  <input type="text" [(ngModel)]="stopsInput" name="stops"><br>
+
+  <button type="submit">Update</button>
+</form>
+
+<br>
+<a routerLink="/routes">Back</a>

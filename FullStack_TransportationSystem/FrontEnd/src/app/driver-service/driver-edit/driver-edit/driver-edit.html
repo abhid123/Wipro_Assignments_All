@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <h2>Edit Driver</h2>
+
+  <form (ngSubmit)="onSubmit()" #driverForm="ngForm">
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input type="text" class="form-control" [(ngModel)]="driver.name" name="name" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">License Number</label>
+      <input type="text" class="form-control" [(ngModel)]="driver.licenseNumber" name="licenseNumber" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Phone Number</label>
+      <input type="text" class="form-control" [(ngModel)]="driver.phoneNumber" name="phoneNumber" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" [(ngModel)]="driver.email" name="email" required />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Availability Status</label>
+      <select class="form-select" [(ngModel)]="driver.availabilityStatus" name="availabilityStatus" required>
+        <option value="AVAILABLE">Available</option>
+        <option value="ON_TRIP">On Trip</option>
+        <option value="OFF_DUTY">Off Duty</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Vehicle ID</label>
+      <input type="number" class="form-control" [(ngModel)]="driver.vehicleId" name="vehicleId" />
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!driverForm.form.valid">Update</button>
+    <button type="button" class="btn btn-secondary ms-2" [routerLink]="['/driver']">Cancel</button>
+  </form>
+</div>
+<a routerLink="/driver" class="btn btn-secondary mt-3">Back Driver List</a>

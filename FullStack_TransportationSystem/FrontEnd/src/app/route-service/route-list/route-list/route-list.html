@@ -1,0 +1,50 @@
+<h2>All Routes</h2>
+
+<div *ngIf="errorMessage" style="color:red">
+  {{ errorMessage }}
+</div>
+
+<div>
+  Total Routes: {{ routes.length }}
+</div>
+
+<div *ngIf="!routes.length && !errorMessage">
+  Loading ...
+</div>
+
+<table *ngIf="routes.length > 0" border="1" cellspacing="0" cellpadding="8"
+       style="border-collapse: collapse; width: 100%;">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Source</th>
+      <th>Destination</th>
+      <th>Distance (km)</th>
+      <th>Duration (min)</th>
+      <th>Stops</th>
+      <th>Created At</th>
+      <th>Updated At</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of routes">
+      <td>{{ r.routeId }}</td>
+      <td>{{ r.source }}</td>
+      <td>{{ r.destination }}</td>
+      <td>{{ r.distanceKm }}</td>
+      <td>{{ r.estimatedDurationMin }}</td>
+      <td>{{ r.stops?.join(', ') }}</td>
+      <td>{{ r.createdAt | date:'dd-MMM-yyyy HH:mm' }}</td>
+      <td>{{ r.updatedAt | date:'dd-MMM-yyyy HH:mm' }}</td>
+      <td>
+        <button (click)="editRoute(r.routeId)">Edit</button>
+        <button (click)="deleteRoute(r.routeId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br />
+<a routerLink="/route-create">Add Route</a> |
+<a routerLink="/">Back to main menu</a>
